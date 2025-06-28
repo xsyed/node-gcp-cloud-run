@@ -15,7 +15,7 @@ steps:
       - '--image'
       - '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/simple-node-express:$COMMIT_SHA'
       - '--region'
-      - 'us-west1'
+      - '$_REGION'
 images:
   - '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/simple-node-express:$COMMIT_SHA'
 options:
