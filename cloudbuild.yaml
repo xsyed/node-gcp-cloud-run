@@ -1,10 +1,10 @@
 steps:
   # Build the image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/simple-node-express:$COMMIT_SHA', '.']
+    args: ['build', '-t', '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/node-gcp-cloud-run:$COMMIT_SHA', '.']
   # Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/simple-node-express:$COMMIT_SHA']
+    args: ['push', '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/node-gcp-cloud-run:$COMMIT_SHA']
   # Deploy image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
@@ -13,10 +13,10 @@ steps:
       - 'deploy'
       - 'simple-node-express'
       - '--image'
-      - '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/simple-node-express:$COMMIT_SHA'
+      - '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/node-gcp-cloud-run:$COMMIT_SHA'
       - '--region'
       - '$_REGION'
 images:
-  - '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/simple-node-express:$COMMIT_SHA'
+  - '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/node-gcp-cloud-run:$COMMIT_SHA'
 options:
   default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
