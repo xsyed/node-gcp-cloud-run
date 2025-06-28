@@ -18,3 +18,5 @@ steps:
       - 'us-west1'
 images:
   - '$_REGION-docker.pkg.dev/$PROJECT_ID/github-node-express/simp-express/simple-node-express:$COMMIT_SHA'
+options:
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
