@@ -2,11 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const userRouter = require('../routes/user');
-
+const db = require('./db');
 const app = express();
 app.use(bodyParser.json());
+
 app.get('/', (req, res) => {
     console.log('GET /');
+    db();
     res.send('Node express server on GCP cloud run');
 });
 
