@@ -5,19 +5,21 @@ async function db() {
   console.log('INIT DB call');
   const connector = new Connector();
 
+  const secret = JSON.parse(process.env.cloud_sql_details);
+
   const clientOpts = await connector.getOptions({
-    instanceConnectionName: process.env.INSTANCE_CONNECTION_NAME, // Replace with your instance connection name
+    instanceConnectionName: secret.INSTANCE_CONNECTION_NAME, // Replace with your instance connection name
     ipType: 'PUBLIC',
   });
 
 
-  console.log("USER --------> ", process.env.DB_USER);
+  console.log("USER --------> ", secret.DB_USER);
 
   const pool = await mysql.createPool({
     ...clientOpts,
-    user: process.env.DB_USER, // Replace with your database user
-    password: process.env.DB_PASSWORD, // Replace with your database password
-    database: process.env.DB_NAME, // Replace with your database name
+    user: secret.DB_USER, // Replace with your database user
+    password: secret.DB_PASSWORD, // Replace with your database password
+    database: secret.DB_NAME, // Replace with your database name
   });
 
   let conn;
